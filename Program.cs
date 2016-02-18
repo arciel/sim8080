@@ -25,10 +25,21 @@ namespace sim85
     {
         static void Main(string[] args)
         {
-            byte b = 0xAA;
-
-            Console.WriteLine("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}\n",b, b >> 0, b >> 1, b >> 2, b >> 3, b >> 4, b >> 5, b >> 6, b >> 7, b >> 8);
-            Console.Read();
+            if (args.Length != 2 || args.Length != 3)
+                printHelp();
+            switch(args[0])
+            {
+                case "--run":
+                    break;
+                case "--assemble":
+                    break;
+                default:
+                    printHelp();
+            }
+            CPU c = new CPU("test.bin");
+            while (!c.IsHalt)
+                c.ExecuteOpcode();
+            Console.WriteLine("CPU Halt!");
         }
     }
 }
